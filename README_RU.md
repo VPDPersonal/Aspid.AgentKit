@@ -63,7 +63,11 @@ npx skills add VPDPersonal/Aspid.AgentKit
 `Review loop`, который включает цикл с ревью-ботом.
 
 Для `asp-pr` нужен [GitHub CLI](https://cli.github.com) (`gh`). Для стэков PR — ещё расширение
-[gh-stack](https://github.com/github/gh-stack) и его скил.
+[gh-stack](https://github.com/github/gh-stack) и его скил. Для скриншотов в описании PR нужен `gh` 2.99 или новее:
+он загружает их через `--attach`.
+
+В десктопном приложении Claude Code события PR сами будят сессию во время цикла ревью. В других средах `asp-pr` ждёт
+вердикт бота до 20 минут после каждого запроса на ревью.
 
 ## Лицензия
 

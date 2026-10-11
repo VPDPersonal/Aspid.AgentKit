@@ -63,7 +63,11 @@ A repository can add its own rules for `asp-pr` in `.claude/asp-pr.md`: the list
 `Review loop` section that turns on the loop with a review bot.
 
 `asp-pr` needs the [GitHub CLI](https://cli.github.com) (`gh`). Stacked pull requests also need the
-[gh-stack](https://github.com/github/gh-stack) extension and its skill.
+[gh-stack](https://github.com/github/gh-stack) extension and its skill. Screenshots in the PR body need `gh` 2.99 or
+newer: it uploads them with `--attach`.
+
+In the Claude Code desktop app, PR events wake the session during the review loop. In other places, `asp-pr` waits
+for the bot verdict for up to 20 minutes after each review request.
 
 ## License
 

@@ -1,6 +1,6 @@
 ---
 name: asp-commit
-description: "Git commit + push of current-session changes only, in one Bash chain."
+description: "Git commit + push of current-session changes only, in one Bash chain. Use when the user asks to commit or push."
 when_to_use: "`/asp-commit`, «закоммить», «комить», «комит», «комить и пуш», «запушь», «commit changes», «push»; any commit request, also after a long task."
 effort: low
 allowed-tools: Bash(sh ${CLAUDE_SKILL_DIR}/scripts/*) Bash(git switch -c:*) Bash(git branch -m:*) Bash(git diff:*) Bash(git add:*) Bash(git rm --cached:*) Bash(git commit:*) Bash(git push -u origin HEAD)
