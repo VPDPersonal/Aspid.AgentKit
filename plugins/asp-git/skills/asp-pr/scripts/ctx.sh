@@ -4,6 +4,8 @@
 dir=$(cd "$(dirname "$0")" && pwd)
 # An optional argument is the root of another repo. Only a manual run passes it, so a bad path may exit 1.
 [ -n "$1" ] && { cd "$1" || exit 1; }
+# The template and the repo rules are read by relative paths, so a run from a subfolder would miss them.
+root=$(git rev-parse --show-toplevel 2>/dev/null) && cd "$root"
 cur=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '?')
 echo "CUR $cur"
 case "$cur" in

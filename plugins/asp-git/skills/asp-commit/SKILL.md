@@ -21,6 +21,7 @@ No output above? Your agent does not run this block: run `sh scripts/ctx.sh` fro
 | `AHEAD`, `NO_UPSTREAM` | Used only in [Push only](#push-only). |
 | `BRANCH new` | Branch step: `git switch -c <name>`. |
 | `BRANCH rename` | Branch step: `git branch -m <name>`. The app made this worktree branch, and origin does not have it yet. |
+| `ROOT <dir>` | cwd is a subfolder, and the status paths are relative to `<dir>`. Start the chain with `cd <dir> &&`. |
 | `SKIP_ADD <path>` | The path is already gone from the index. Keep it in `git commit -- <paths>`, but not in `git add`. |
 
 Before a branch step, load the `asp-branch` skill to get `<name>`.

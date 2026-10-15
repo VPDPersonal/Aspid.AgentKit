@@ -2,6 +2,9 @@
 # Prints the git status and hint lines that SKILL.md acts on.
 # An optional argument is the root of another repo to check instead of cwd.
 [ -n "$1" ] && { cd "$1" || exit 1; }
+# Porcelain paths are relative to the root; from a subfolder, `git add` would not find them.
+root=$(git rev-parse --show-toplevel 2>/dev/null)
+[ -n "$root" ] && [ "$root" != "$(pwd -P)" ] && echo "ROOT $root"
 s=$(git status --porcelain -b)
 printf '%s\n' "$s"
 head=$(printf '%s\n' "$s" | head -n 1)
