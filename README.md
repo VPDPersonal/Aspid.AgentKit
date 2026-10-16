@@ -13,24 +13,20 @@ plugins and in Codex, Cursor, Gemini CLI, GitHub Copilot and other agents as pla
 
 ### Claude Code: for one repository
 
-Add this to the repository's `.claude/settings.json`:
+Copy the skills into the repository and commit them:
 
-```json
-{
-  "extraKnownMarketplaces": {
-    "aspid": {
-      "source": { "source": "github", "repo": "VPDPersonal/Aspid.AgentKit" },
-      "autoUpdate": true
-    }
-  },
-  "enabledPlugins": {
-    "asp-git@aspid": true
-  }
-}
+```sh
+npx skills add VPDPersonal/Aspid.AgentKit -a claude-code --copy
 ```
 
-A contributor trusts the folder once, and Claude Code adds the marketplace and loads the plugin. No install command is
-needed. If the skills do not appear in the first session, run `/reload-plugins`.
+Claude Code loads skills from `.claude/skills/`, so every clone and every worktree has them, with no install step.
+To update, run the command again and commit the result.
+
+If the repository itself ships skills through `npx skills add`, mark the copies `metadata: internal: true`.
+Otherwise the installer offers them to the repository's users too.
+
+Do not enable the plugin in the repository's `.claude/settings.json`. Claude Code records a project install for one
+folder, so the plugin does not load in worktrees.
 
 ### Claude Code: for all your projects
 
@@ -56,7 +52,7 @@ Update with `npx skills update`.
 | `asp-commit` | `/asp-commit`, "commit", "push" | Commits only the files of the current session and pushes them in one shell call |
 | `asp-pr` | `/asp-pr`, "open a PR" | Draft PR with a Conventional Commits title and a short body; updates, ready and merge |
 
-In Claude Code the full names are `/asp-git:asp-commit` and so on. The short `/asp-commit` works while no other skill
+With the plugin, the full names in Claude Code are `/asp-git:asp-commit` and so on. The short `/asp-commit` works while no other skill
 has that name.
 
 A repository can add its own rules for `asp-pr` in `.claude/asp-pr.md`: the list of scopes and labels, and a

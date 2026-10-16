@@ -13,24 +13,20 @@
 
 ### Claude Code: для одного репозитория
 
-Добавьте в `.claude/settings.json` репозитория:
+Скопируйте скилы в репозиторий и закоммитьте их:
 
-```json
-{
-  "extraKnownMarketplaces": {
-    "aspid": {
-      "source": { "source": "github", "repo": "VPDPersonal/Aspid.AgentKit" },
-      "autoUpdate": true
-    }
-  },
-  "enabledPlugins": {
-    "asp-git@aspid": true
-  }
-}
+```sh
+npx skills add VPDPersonal/Aspid.AgentKit -a claude-code --copy
 ```
 
-Контрибьютор один раз доверяет папке, и Claude Code сам добавляет маркетплейс и загружает плагин. Команда установки не
-нужна. Если в первой сессии скилов нет, выполните `/reload-plugins`.
+Claude Code загружает скилы из `.claude/skills/`, поэтому они есть в каждом клоне и в каждом worktree без установки.
+Для обновления запустите команду ещё раз и закоммитьте результат.
+
+Если репозиторий сам раздаёт скилы через `npx skills add`, пометьте копии `metadata: internal: true`.
+Иначе установщик предложит их и пользователям репозитория.
+
+Не включайте плагин в `.claude/settings.json` репозитория. Claude Code запоминает установку для проекта по одной
+папке, и в worktree плагин не загружается.
 
 ### Claude Code: для всех своих проектов
 
@@ -56,7 +52,7 @@ npx skills add VPDPersonal/Aspid.AgentKit
 | `asp-commit` | `/asp-commit`, «закоммить», «запушь» | Коммитит только файлы текущей сессии и пушит одним вызовом shell |
 | `asp-pr` | `/asp-pr`, «открой пр» | Черновик PR с заголовком по Conventional Commits и коротким описанием; обновление, ready и мерж |
 
-В Claude Code полные имена — `/asp-git:asp-commit` и так далее. Короткое `/asp-commit` работает, пока нет другого скила
+С плагином полные имена в Claude Code — `/asp-git:asp-commit` и так далее. Короткое `/asp-commit` работает, пока нет другого скила
 с таким именем.
 
 Репозиторий может добавить свои правила для `asp-pr` в `.claude/asp-pr.md`: список scope и меток и раздел
