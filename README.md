@@ -16,7 +16,7 @@ Each set installs on its own, with [`npx skills`](https://github.com/vercel-labs
 ### Into a repository
 
 ```sh
-npx skills add VPDPersonal/Aspid.AgentKit/plugins/asp-git --copy
+npx skills add VPDPersonal/Aspid.AgentKit/asp-git --copy
 ```
 
 Commit the copies. Every clone and every worktree then has the skills, with no install step. Add `-a claude-code`
@@ -25,7 +25,7 @@ to copy them only for Claude Code. To update, run the command again and commit t
 ### For all your projects
 
 ```sh
-npx skills add VPDPersonal/Aspid.AgentKit/plugins/asp-git -g
+npx skills add VPDPersonal/Aspid.AgentKit/asp-git -g
 ```
 
 Update with `npx skills update`.

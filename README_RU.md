@@ -16,7 +16,7 @@ Cursor, Gemini CLI, GitHub Copilot и других агентах.
 ### В репозиторий
 
 ```sh
-npx skills add VPDPersonal/Aspid.AgentKit/plugins/asp-git --copy
+npx skills add VPDPersonal/Aspid.AgentKit/asp-git --copy
 ```
 
 Закоммитьте копии. Тогда скилы есть в каждом клоне и в каждом worktree без установки. Добавьте `-a claude-code`,
@@ -25,7 +25,7 @@ npx skills add VPDPersonal/Aspid.AgentKit/plugins/asp-git --copy
 ### Для всех своих проектов
 
 ```sh
-npx skills add VPDPersonal/Aspid.AgentKit/plugins/asp-git -g
+npx skills add VPDPersonal/Aspid.AgentKit/asp-git -g
 ```
 
 Обновление: `npx skills update`.
