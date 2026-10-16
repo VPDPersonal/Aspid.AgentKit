@@ -2,46 +2,32 @@
 
 [English version](README.md)
 
-Плагины и [Agent Skills](https://agentskills.io), с которыми я разрабатываю свои проекты. В Claude Code они работают как
-плагины, а в Codex, Cursor, Gemini CLI, GitHub Copilot и других агентах — как обычные скилы.
+[Agent Skills](https://agentskills.io), с которыми я разрабатываю свои проекты. Они работают в Claude Code, Codex,
+Cursor, Gemini CLI, GitHub Copilot и других агентах.
 
-| Плагин | Скилы | Что делает |
+| Набор | Скилы | Что делает |
 |---|---|---|
 | [asp-git](#asp-git) | `asp-branch`, `asp-commit`, `asp-pr` | Имена веток, коммиты и pull request'ы в стиле моих репозиториев |
 
 ## Установка
 
-### Claude Code: для одного репозитория
+Каждый набор ставится отдельно, через [`npx skills`](https://github.com/vercel-labs/skills).
 
-Скопируйте скилы в репозиторий и закоммитьте их:
-
-```sh
-npx skills add VPDPersonal/Aspid.AgentKit -a claude-code --copy
-```
-
-Claude Code загружает скилы из `.claude/skills/`, поэтому они есть в каждом клоне и в каждом worktree без установки.
-Для обновления запустите команду ещё раз и закоммитьте результат.
-
-Если репозиторий сам раздаёт скилы через `npx skills add`, пометьте копии `metadata: internal: true`.
-Иначе установщик предложит их и пользователям репозитория.
-
-Не включайте плагин в `.claude/settings.json` репозитория. Claude Code запоминает установку для проекта по одной
-папке, и в worktree плагин не загружается.
-
-### Claude Code: для всех своих проектов
-
-```
-/plugin marketplace add VPDPersonal/Aspid.AgentKit
-/plugin install asp-git@aspid
-```
-
-### Другие агенты
+### В репозиторий
 
 ```sh
-npx skills add VPDPersonal/Aspid.AgentKit
+npx skills add VPDPersonal/Aspid.AgentKit/asp-git --copy
 ```
 
-Флаг `-g` ставит скилы для пользователя, а не для проекта, `--skill asp-commit` выбирает скилы.
+Закоммитьте копии. Тогда скилы есть в каждом клоне и в каждом worktree без установки. Добавьте `-a claude-code`,
+чтобы скопировать их только для Claude Code. Для обновления запустите команду ещё раз и закоммитьте результат.
+
+### Для всех своих проектов
+
+```sh
+npx skills add VPDPersonal/Aspid.AgentKit/asp-git -g
+```
+
 Обновление: `npx skills update`.
 
 ## asp-git
@@ -51,9 +37,6 @@ npx skills add VPDPersonal/Aspid.AgentKit
 | `asp-branch` | его загружают два других | Имена веток: `<type>/<short-description>` с типами Conventional Commits |
 | `asp-commit` | `/asp-commit`, «закоммить», «запушь» | Коммитит только файлы текущей сессии и пушит одним вызовом shell |
 | `asp-pr` | `/asp-pr`, «открой пр» | Черновик PR с заголовком по Conventional Commits и коротким описанием; обновление, ready и мерж |
-
-С плагином полные имена в Claude Code — `/asp-git:asp-commit` и так далее. Короткое `/asp-commit` работает, пока нет другого скила
-с таким именем.
 
 Репозиторий может добавить свои правила для `asp-pr` в `.claude/asp-pr.md`: список scope и меток и раздел
 `Review loop`, который включает цикл с ревью-ботом.
