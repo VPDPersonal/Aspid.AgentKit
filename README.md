@@ -9,8 +9,6 @@ The [Agent Skills](https://agentskills.io) I use to develop my projects
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-blue)](https://agentskills.io)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**English** · [Русский](README_RU.md)
-
 </div>
 
 ## Sets
