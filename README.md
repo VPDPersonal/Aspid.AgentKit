@@ -1,13 +1,23 @@
+<div align="center">
+
 # Aspid.AgentKit
 
-[Русская версия](README_RU.md)
+The [Agent Skills](https://agentskills.io) I use to develop my projects
 
-[Agent Skills](https://agentskills.io) that I use to develop my projects. They work in Claude Code, Codex, Cursor,
-Gemini CLI, GitHub Copilot and other agents.
+<sub>Claude Code · Codex · Cursor · Gemini CLI · GitHub Copilot · other agents</sub>
 
-| Set | Skills | What it does |
-|---|---|---|
-| [asp-git](#asp-git) | `asp-branch`, `asp-commit`, `asp-pr` | Branch names, commits and pull requests in the style of my repositories |
+[![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-blue)](https://agentskills.io)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+**English** · [Русский](README_RU.md)
+
+</div>
+
+## Sets
+
+| Set | What it does |
+|---|---|
+| [asp-git](#asp-git) | Branches, commits and pull requests in the style of my repositories |
 
 ## Install
 
@@ -19,8 +29,8 @@ Each set installs on its own, with [`npx skills`](https://github.com/vercel-labs
 npx skills add VPDPersonal/Aspid.AgentKit/asp-git --copy
 ```
 
-Commit the copies. Every clone and every worktree then has the skills, with no install step. Add `-a claude-code`
-to copy them only for Claude Code. To update, run the command again and commit the result.
+Commit the copies: every clone and every worktree then has the skills, with no install step. To update, run the
+command again and commit the result. Add `-a claude-code` to copy the skills only for Claude Code.
 
 ### For all your projects
 
@@ -28,26 +38,29 @@ to copy them only for Claude Code. To update, run the command again and commit t
 npx skills add VPDPersonal/Aspid.AgentKit/asp-git -g
 ```
 
-Update with `npx skills update`.
+To update, run `npx skills update`.
 
 ## asp-git
 
-| Skill | Call it | What it does |
-|---|---|---|
-| `asp-branch` | loaded by the other two | Branch names: `<type>/<short-description>` with Conventional Commits types |
-| `asp-commit` | `/asp-commit`, "commit", "push" | Commits only the files of the current session and pushes them in one shell call |
-| `asp-pr` | `/asp-pr`, "open a PR" | Draft PR with a Conventional Commits title and a short body; updates, ready and merge |
+| Skill | What it does |
+|---|---|
+| `asp-branch` | Branch names: `<type>/<short-description>`. The other two skills load it |
+| `asp-commit` | Commits only the files of the current session and pushes them |
+| `asp-pr` | Draft PR with a short Why / What body; update, ready and merge |
 
-A repository can add its own rules for `asp-pr` in `.claude/asp-pr.md`: the list of scopes and labels, and a
-`Review loop` section that turns on the loop with a review bot.
+Call a skill by name, `/asp-pr`, or in plain words: "commit", "push", "open a PR".
 
-`asp-pr` needs the [GitHub CLI](https://cli.github.com) (`gh`). Stacked pull requests also need the
-[gh-stack](https://github.com/github/gh-stack) extension and its skill. Screenshots in the PR body need `gh` 2.99 or
-newer: it uploads them with `--attach`.
+### Requirements
 
-In the Claude Code desktop app, PR events wake the session during the review loop. In other places, `asp-pr` waits
-for the bot verdict for up to 20 minutes after each review request.
+- [GitHub CLI](https://cli.github.com) (`gh`) for `asp-pr`, version 2.99 or newer for screenshots in the PR body.
+- [gh-stack](https://github.com/github/gh-stack) and its skill for stacked pull requests.
+
+### Repository rules
+
+A repository can add its own rules for `asp-pr` in `.claude/asp-pr.md`: the scopes, the labels and a `Review loop`
+section that turns on the loop with a review bot. In the Claude Code desktop app, PR events wake the session during
+the loop. In other places, `asp-pr` waits up to 20 minutes for each bot verdict.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+[MIT](LICENSE)

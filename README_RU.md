@@ -1,13 +1,23 @@
+<div align="center">
+
 # Aspid.AgentKit
 
-[English version](README.md)
+[Agent Skills](https://agentskills.io), с которыми я разрабатываю свои проекты
 
-[Agent Skills](https://agentskills.io), с которыми я разрабатываю свои проекты. Они работают в Claude Code, Codex,
-Cursor, Gemini CLI, GitHub Copilot и других агентах.
+<sub>Claude Code · Codex · Cursor · Gemini CLI · GitHub Copilot · другие агенты</sub>
 
-| Набор | Скилы | Что делает |
-|---|---|---|
-| [asp-git](#asp-git) | `asp-branch`, `asp-commit`, `asp-pr` | Имена веток, коммиты и pull request'ы в стиле моих репозиториев |
+[![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-blue)](https://agentskills.io)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+[English](README.md) · **Русский**
+
+</div>
+
+## Наборы
+
+| Набор | Что делает |
+|---|---|
+| [asp-git](#asp-git) | Ветки, коммиты и pull request'ы в стиле моих репозиториев |
 
 ## Установка
 
@@ -19,8 +29,8 @@ Cursor, Gemini CLI, GitHub Copilot и других агентах.
 npx skills add VPDPersonal/Aspid.AgentKit/asp-git --copy
 ```
 
-Закоммитьте копии. Тогда скилы есть в каждом клоне и в каждом worktree без установки. Добавьте `-a claude-code`,
-чтобы скопировать их только для Claude Code. Для обновления запустите команду ещё раз и закоммитьте результат.
+Закоммитьте копии: тогда скилы есть в каждом клоне и в каждом worktree без установки. Для обновления запустите
+команду ещё раз и закоммитьте результат. Добавьте `-a claude-code`, чтобы скопировать скилы только для Claude Code.
 
 ### Для всех своих проектов
 
@@ -32,22 +42,25 @@ npx skills add VPDPersonal/Aspid.AgentKit/asp-git -g
 
 ## asp-git
 
-| Скил | Как вызвать | Что делает |
-|---|---|---|
-| `asp-branch` | его загружают два других | Имена веток: `<type>/<short-description>` с типами Conventional Commits |
-| `asp-commit` | `/asp-commit`, «закоммить», «запушь» | Коммитит только файлы текущей сессии и пушит одним вызовом shell |
-| `asp-pr` | `/asp-pr`, «открой пр» | Черновик PR с заголовком по Conventional Commits и коротким описанием; обновление, ready и мерж |
+| Скил | Что делает |
+|---|---|
+| `asp-branch` | Имена веток: `<type>/<short-description>`. Его загружают два других скила |
+| `asp-commit` | Коммитит только файлы текущей сессии и пушит их |
+| `asp-pr` | Черновик PR с коротким описанием Why / What; обновление, ready и мерж |
+
+Вызывайте скил по имени, `/asp-pr`, или словами: «закоммить», «запушь», «открой пр».
+
+### Что нужно
+
+- [GitHub CLI](https://cli.github.com) (`gh`) для `asp-pr`, версия 2.99 или новее для скриншотов в описании PR.
+- [gh-stack](https://github.com/github/gh-stack) и его скил для стэков PR.
+
+### Правила репозитория
 
 Репозиторий может добавить свои правила для `asp-pr` в `.claude/asp-pr.md`: список scope и меток и раздел
-`Review loop`, который включает цикл с ревью-ботом.
-
-Для `asp-pr` нужен [GitHub CLI](https://cli.github.com) (`gh`). Для стэков PR — ещё расширение
-[gh-stack](https://github.com/github/gh-stack) и его скил. Для скриншотов в описании PR нужен `gh` 2.99 или новее:
-он загружает их через `--attach`.
-
-В десктопном приложении Claude Code события PR сами будят сессию во время цикла ревью. В других средах `asp-pr` ждёт
-вердикт бота до 20 минут после каждого запроса на ревью.
+`Review loop`, который включает цикл с ревью-ботом. В десктопном приложении Claude Code события PR сами будят сессию
+во время цикла. В других средах `asp-pr` ждёт каждый вердикт бота до 20 минут.
 
 ## Лицензия
 
-MIT — см. [LICENSE](LICENSE).
+[MIT](LICENSE)
